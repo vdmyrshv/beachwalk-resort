@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, {css, keyframes} from 'styled-components'
-import {setColor, setFlex} from '../../styles'
+import {setColor, setFlex, setLetterSpacing, setBorder, media} from '../../styles'
 
 const Banner = ({className, title, text, greeting, children}) => {
     return (
@@ -16,7 +16,6 @@ const Banner = ({className, title, text, greeting, children}) => {
 
 const BannerWrapper = styled(Banner)`
     color: ${setColor.primaryColor};
-    border: 2px solid ${setColor.primaryColor};
     border-radius: 5px;
     background-color: rgba(0, 0, 0, .2);
     backdrop-filter: blur(5px);
@@ -28,12 +27,32 @@ const BannerWrapper = styled(Banner)`
     h1 {
         text-transform: uppercase;
         color: ${setColor.mainGrey};
+        text-align: center;
+        ${setLetterSpacing(7)}
+
+        span {
+            ${setLetterSpacing(10)}
+            color: ${setColor.primaryColor}
+        }
     }
 
-    .info {
+    p {
         padding: 2rem;
         color: ${setColor.mainWhite};
+        text-align: justify;
     }
+
+    ${media.tablet`
+        width: 90vw;
+        ${setBorder()}
+    `}
+/* 
+    above helper function replaces this media query, but the syntax below works too
+    @media only screen and (min-width: 768px) {
+        width: 70vw;
+        ${setBorder()}
+
+    } */
 
 `
 
