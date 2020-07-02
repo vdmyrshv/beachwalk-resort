@@ -1,10 +1,10 @@
-import { css } from 'styled-components'
+import { css, keyframes } from 'styled-components'
 
 const defaultImage =
 	'https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80'
 
 export const setColor = {
-	primaryColor: '#af9a7d',
+	primaryColor: 'darkgoldenrod',
 	mainWhite: '#fff',
 	mainBlack: '#222',
 	mainGrey: '#ececec',
@@ -56,12 +56,40 @@ const sizes = {
 }
 
 //iterate through the sizes and create a media template
+//you can change desktop-centric or mobile-centric design by changing max-width/min-width property inside
 export const media = Object.keys(sizes).reduce((acc, label) => {
 	acc[label] = (...args) => css`
-	  @media (min-width: ${sizes[label] / 16}em) {
+	  @media (max-width: ${sizes[label] / 16}em) {
 		${css(...args)}
 	  }
 	`;
   
 	return acc;
   }, {});
+
+//animation helper fn example - in this case the fn arguments are only the translateY value, but this is the gist of it
+
+export const fadeIn = (start, mid, end) => {
+	const animation = keyframes`
+        0%{
+            opacity: 0;
+            transform: translateY(${start});
+        }
+        50%{
+            transform: translateY(${mid});
+        }
+        100%{
+            opacity: 1;
+            transform: translateY(${end});
+        }
+    `
+	return css`
+		animation: ${animation} 1s ease-in-out;
+	`
+}
+
+//animation transition helper function
+export const setTransition = ({property="all", time="0.3s", timing="ease-in-out"}={})=>`
+	transition: ${property} ${time} ${timing};
+`
+
