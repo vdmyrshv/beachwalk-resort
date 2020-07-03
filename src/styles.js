@@ -6,7 +6,7 @@ const defaultImage =
 export const setColor = {
 	primaryColor: 'darkgoldenrod',
 	mainWhite: '#fff',
-	mainBlack: '#222',
+	mainBlack: '#555',
 	mainGrey: '#ececec',
 	lightGrey: '#f7f7f7'
 }
@@ -14,6 +14,15 @@ export const setColor = {
 export const setFont = {
 	main: "font-family: 'Lato', sans-serif;",
 	slanted: "font-family: 'Courgette', cursive;"
+}
+
+export const setBoxShadow = {
+	light: 'box-shadow: 0 0 15px -6px rgba(0,0,0,0.25);',
+	dark: 'box-shadow: 0 0 15px -6px rgba(0,0,0,0.55);',
+	darkest: 'box-shadow: 0 0 15px -6px rgba(0,0,0,0.75);',
+	lightPressed: 'box-shadow: 0 0 25px -6px rgba(0,0,0,0.25);',
+	darkPressed: 'box-shadow: 0 0 25px -6px rgba(0,0,0,0.55);',
+	darkestPressed: 'box-shadow: 0 0 25px -6px rgba(0,0,0,0.75);'
 }
 
 //setting defaults
@@ -59,13 +68,13 @@ const sizes = {
 //you can change desktop-centric or mobile-centric design by changing max-width/min-width property inside
 export const media = Object.keys(sizes).reduce((acc, label) => {
 	acc[label] = (...args) => css`
-	  @media (max-width: ${sizes[label] / 16}em) {
-		${css(...args)}
-	  }
-	`;
-  
-	return acc;
-  }, {});
+		@media (max-width: ${sizes[label] / 16}em) {
+			${css(...args)}
+		}
+	`
+
+	return acc
+}, {})
 
 //animation helper fn example - in this case the fn arguments are only the translateY value, but this is the gist of it
 
@@ -89,7 +98,10 @@ export const fadeIn = (start, mid, end) => {
 }
 
 //animation transition helper function
-export const setTransition = ({property="all", time="0.3s", timing="ease-in-out"}={})=>`
+export const setTransition = ({
+	property = 'all',
+	time = '0.3s',
+	timing = 'ease-in-out'
+} = {}) => `
 	transition: ${property} ${time} ${timing};
 `
-

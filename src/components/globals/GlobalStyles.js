@@ -1,10 +1,13 @@
 import { createGlobalStyle } from 'styled-components'
 
 //import global style objects from styles.js, these are accesed in the global style using templates
-import { setColor, setFont } from '../../styles'
+import { setColor, setFont, setLetterSpacing } from '../../styles'
 
 export default createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css2?family=Courgette&family=Lato:wght@400;700&display=swap');
+
+    /* @import statement here doesn't work for fonts, fonts imported in index.html in <head> */
+    /* as per the documentation, the @import statement is currently having issues */
+    /* @import url('https://fonts.googleapis.com/css2?family=Courgette&family=Lato:ital,wght@1,400;1,700&display=swap'); */
     *,
     *::after,
     *::before {
@@ -25,6 +28,10 @@ export default createGlobalStyle`
     ::selection {
         background-color: rgba(0, 139, 139, 0.5);
         color: white;
+    }
+
+    h1,h2,h3,h4,h5,h6 {
+        text-transform: capitalize;
     }
     
     h1 {
@@ -65,6 +72,7 @@ export default createGlobalStyle`
         font-size: 1.6rem;
         line-height: 1.5;
         margin: 0 0 1.5 0;
+        ${setLetterSpacing(1.15)}
     }
 
 `

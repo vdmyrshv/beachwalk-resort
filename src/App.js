@@ -1,7 +1,9 @@
 import React from 'react'
-import Home from './pages/Home'
 
 import GlobalStyles from './components/globals/GlobalStyles'
+
+import Home from './pages/Home'
+import About from './components/home/About'
 
 function App() {
 	return (
